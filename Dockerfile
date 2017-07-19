@@ -6,9 +6,7 @@ RUN echo "deb http://us.archive.ubuntu.com/ubuntu xenial main multiverse" >> /et
 # Use this to avoid prompts when installing and updating stuff
 ENV DEBIAN_FRONTEND=noninteractive
 
-MAINTAINER "Javier Sánchez Rois" <jsanchez@gradiant.org>
-
-# Upgrade, install common pytons scripts (required for add-apt-repository)and other dependencies
+MAINTAINER "Javier Sanchez Rois" <jsanchez@gradiant.org>
 
 RUN apt-get update && \
  	apt-get install -y curl \
@@ -105,5 +103,7 @@ RUN git clone https://github.com/BVLC/caffe.git && \
     mkdir caffe/build && cd caffe/build && \
     cmake -D ALLOW_LMDB_NOLOCK:BOOL=ON -D CMAKE_INSTALL_PREFIX:PATH=/usr/local -D BUILD_python=OFF -D CPU_ONLY=ON .. &&\
     make -j4 && make install && ldconfig && rm -rf /caffe
+
+#TODO: ADD CONAN
 
 ENTRYPOINT ["/bin/bash"]
